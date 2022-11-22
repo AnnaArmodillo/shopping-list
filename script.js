@@ -12,7 +12,7 @@ const products = {
           elemItem.dataset.productsState = action;
           const lexicon = {
             active: 'восстановлено',
-            completed: 'завершено',
+            completed: 'куплено',
             deleted: 'удалено'
           };
           const elProductsDate = elemItem.querySelector('.products__date');
@@ -45,16 +45,15 @@ const products = {
           <div class="products__cost">${cost}</div>
           <div class="products__date" data-products-date="${date}">
             <div>добавлено: ${new Date().toLocaleString().slice(0, -3)}</div></div>
-        <span class="products__action products__action_restore" data-products-action="active"></span>
-        <span class="products__action products__action_complete" data-products-action="completed"></span>
-        <span class="products__action products__action_delete" data-products-action="deleted"></span></li>`;
+        <div class="products__actions products__action_restore" data-products-action="active"><i class="fa-solid fa-reply products__action products__action_restore" data-products-action="active"></i></div>
+        <div class="products__actions products__action_complete" data-products-action="completed"><i class="fa-solid fa-check products__action products__action_complete" data-products-action="completed"></i></div>
+        <div class="products__actions products__action_delete" data-products-action="deleted"><i class="fa-solid fa-trash products__action products__action_delete" data-products-action="deleted"></i></div></li>`;
     },
     init() {
       const fromStorage = localStorage.getItem('products');
       if (fromStorage) {
         document.querySelector('.products__items').innerHTML = fromStorage;
       }
-    //   document.querySelector('.products__options').addEventListener('change', this.update);
       document.addEventListener('click', this.action.bind(this));
       this.sum();
     },
