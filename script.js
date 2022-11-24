@@ -1,3 +1,6 @@
+const cost = document.querySelector('.productsCost__text');
+const item = document.querySelector('.products__text');
+const error = document.querySelector('span.error');
 let sum = 0;
 let addSum = 0;
 const products = {
@@ -20,10 +23,13 @@ const products = {
           elProductsDate.insertAdjacentHTML('beforeend', html);
         }
         this.save();
-      } else if (target.classList.contains('products__add')) {
+      } else if (target.classList.contains('products__add') && cost.validity.valid &&item.validity.valid) {
         this.add();
         this.save();
       }
+       else if (target.classList.contains('products__add') && (!cost.validity.valid || !item.validity.valid)) {
+        showError();
+       }
     },
     add() {
       const elemText = document.querySelector('.products__text');
@@ -99,3 +105,33 @@ const products = {
   }
 }
   products.init();
+  
+  item.addEventListener("input", function (event) {
+    if (item.validity.valid) {
+      error.textContent = '';
+      error.className = 'error';
+    } else {
+      showError();
+    }
+  });
+  cost.addEventListener("input", function (event) {
+    if (cost.validity.valid) {
+      error.textContent = '';
+      error.className = 'error';
+    } else {
+      showError();
+    }
+  });
+  
+  function showError() {
+    if (item.validity.valueMissing) {
+      error.textContent = 'Вы не указали, что хотите купить';
+    } else if (cost.validity.valueMissing) {
+      error.textContent = 'Вы не указали стоимость';
+    } else if(cost.validity.rangeUnderflow) {
+      error.textContent = 'К сожалению, отрицательных цен не бывает';
+    } else if(cost.validity.rangeOverflow) {
+      error.textContent = `Это стоит слишком дорого`;
+    }
+    error.className = 'error active';
+  }

@@ -1,29 +1,22 @@
+  body {
+    text-align: center;
+    background-color: #9b90f8;
+    font-family: 'Balsamiq Sans', cursive;
+    padding: 0 20px;
+  }
+  
   header {
     font-size: 50px;
     color: blue;
     margin-bottom: 50px;
-    font-family: 'Balsamiq Sans', cursive;
   }
 
-  body {
-    text-align: center;
-    background-color: #9b90f8;
-  }
-  
   .products {
-    width: 90vw;
+    height: 32px;
     display: flex;
     margin: 15px auto;
-    justify-content: center;
-  }
-  
-  .products__input {
+    justify-content: space-evenly;
     position: relative;
-    display: grid;
-    width: 80%;
-    grid-template-columns: 3fr 1fr auto;
-    gap: 20px;
-    justify-content: space-around;
     margin-bottom: 30px;
   }
 
@@ -33,14 +26,22 @@
    }
 
   .products__text, .productsCost__text {
-    padding: 6px 34px 6px 10px;
-    font-size: inherit;
+    padding: 6px 10px 6px 10px;
     font-family: inherit;
-    line-height: inherit;
+    font-size: 14px;
     border: 1px solid #dd75dd;
     border-radius: 4px;
     outline: none;
     margin-right: 20px;
+    color: blue;
+  }
+
+  .products__text {
+    width: calc((100vw - 32px - 20px * 2) * 0.75);
+  }
+
+  .productsCost__text {
+    width: calc((100vw - 32px - 20px * 2) * 0.25);
   }
   
   .products__text:focus, .productsCost__text:focus {
@@ -49,6 +50,7 @@
   
   .products__add {
     width: 32px;
+    height: 32px;
     background-color: #dd75dd;
     cursor: pointer;
     transition: background-color 0.15s ease-in;
@@ -68,13 +70,11 @@
   }
   
   .products__items {
-    width: 50%;
     margin-right: auto;
     margin-left: auto;
     padding-left: 0;
     list-style-type: none;
     font-size: 20px;
-    font-family: 'Balsamiq Sans', cursive;
   }
   
   .products__item {
@@ -199,28 +199,37 @@ input[type="number"]:focus {
 .totalCost {
     font-size: 30px;
     color: blue;
-    font-family: 'Balsamiq Sans', cursive;
 }
 
-@media (max-width: 720px) {
+.error {
+  width : 100%;
+  padding: 0;
+  font-size: 80%;
+  color: rgb(4, 34, 165);
+  background-color: rgb(241, 72, 199);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.3em;
+}
+
+@media (max-width: 1024px) {
   header {
     font-size: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
-  .products__input {
-     max-width: 650px;gap: 10px;
-     margin-bottom: 20px;
+  .products {
+     margin-bottom: 10px;
   }
-  .products__items {
-    width: 80%;
-  }
-  .products__item {
-    grid-template-columns: 3fr 1fr;
-    padding: 5px;
-  }
+  
   .totalCost {
     font-size: 20px;
-    max-width: 80vw;
-    margin: auto;
-}
+  }
+
+  .products__items {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }

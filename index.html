@@ -16,14 +16,12 @@
     Список покупок
   </header>
   <div class="products">
-    <div class="products__input">
-      <input class="products__text" type="text" placeholder="наименование">
-      <input class="productsCost__text" type="number" placeholder="цена">
+      <input class="products__text" type="text" required placeholder="наименование">
+      <input class="productsCost__text" type="number" required min="0" max="10000" placeholder="цена">
       <div class="products__add"><i class="fa-solid fa-plus products__add"></i></div>
-    </div>
   </div>
-    <ul class="products__items" data-products-option="active"></ul>
-  </div>
+  <ul class="products__items" data-products-option="active"></ul>
+  <span class="error" aria-live="polite"></span>
   <div class="totalCost"></div>
 <script src="script.js"></script>
 </body>
